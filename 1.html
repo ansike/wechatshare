@@ -104,34 +104,39 @@
     .text_number {
         line-height: 20px;
     }
-    .container{
-    	position: relative;
+
+    .container {
+        position: relative;
     }
-    @keyframes rota{
-    	0%{
-    		transform:rotate(0deg);
-    	}
-    	100%{
-    		transform:rotate(360deg);
-    	}
+
+    @keyframes rota {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
     }
-    #music_box{
-    	width: 40px;
-    	height: 40px;
-    	border-radius: 10%;
-    	background: red;
-    	position: absolute;
-    	z-index: 100;
-    	right: 10%;
-    	top: 10%;
-    	animation:rota 2s linear infinite;
+
+    #music_box {
+        width: 40px;
+        height: 40px;
+        border-radius: 10%;
+        background: red;
+        position: absolute;
+        z-index: 100;
+        right: 10%;
+        top: 10%;
+        animation: rota 2s linear infinite;
     }
     </style>
 </head>
 
 <body>
     <div class="container">
-    	<div id="music_box"></div>
+        <div id="music_box">
+            <audio autoplay autoloop loop src="audio/1.mp3"></audio>
+        </div>
         <div id="pages">
             <div class="page p1">
                 <div id="text1" contenteditable="true">啊十多个家还时代光华啊十多个家还时代光华啊十多个家还时代光华啊十多个家还时代光华</div>
@@ -141,24 +146,25 @@
             <div class="page p4">444</div>
         </div>
     </div>
-    <!-- 	<div class="bg">
-		<div class="text_bg">
-			<textarea class="textarea" name="" autofocus="autofocus"></textarea>
-			<div class="text_bottom">
-				<button class="cancle l">取消</button>
-				<span class="text_number"><span class="surplus">7</span>/<span class="total">10</span></span>
-				<button class="ok r">确定</button>
-			</div>
-		</div>
-	</div> -->
+    <!--    <div class="bg">
+        <div class="text_bg">
+            <textarea class="textarea" name="" autofocus="autofocus"></textarea>
+            <div class="text_bottom">
+                <button class="cancle l">取消</button>
+                <span class="text_number"><span class="surplus">7</span>/<span class="total">10</span></span>
+                <button class="ok r">确定</button>
+            </div>
+        </div>
+    </div> -->
 </body>
 <script type="text/javascript" src="pageSwitch.js"></script>
 <script type="text/javascript" src="jquery-1.12.4.js"></script>
 <script type="text/javascript" src="modules/textarea.js"></script>
 <script type="text/javascript">
-var status=location.search.match(/status=([^&]*)/),
-	ts=status||"org",
-	a = new pageSwitch('pages', {
+var st = location.search.match(/status=([^&]*)/),
+    ts = st && st[1] || "org";
+
+var a = new pageSwitch('pages', {
     duration: 1000,
     start: 0,
     direction: 1,
@@ -170,19 +176,29 @@ var status=location.search.match(/status=([^&]*)/),
     mousewheel: true,
     arrowkey: true
 });
+
 function deal(that) {
-	//确认时间的回调处理
-	that.close();
-}	
+    //确认时间的回调处理
+    that.close();
+}
 $("#text1").on("click", function() {
     var text = $(this).text();
     var t = new TextArea({
         "maxlength": 50,
         "content": text,
-        "yes":deal
+        "yes": deal
     });
 })
-
+$("#music_box").on("click", function() {
+    var audio = $(this).children("audio").get(0);
+    if (audio.paused) {
+        audio.play();
+        $(this).css("animation","rota 2s linear infinite")
+    } else {
+        audio.pause();
+        $(this).css("animation","null")
+    }
+})
 </script>
 
 </html>
