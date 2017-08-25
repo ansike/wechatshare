@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <link type="text/css" rel="stylesheet" href="css/index.css" />
+    <script type="text/javascript">
+    var rem = document.documentElement.clientWidth / 6.4;
+    document.getElementsByTagName('html')[0].style.fontSize = rem + 'px';
+    addEventListener('resize', function() {
+        var rem = document.documentElement.clientWidth / 6.4;
+        document.getElementsByTagName('html')[0].style.fontSize = rem + 'px';
+    })
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div id="music_box">
+            <audio autoplay autoloop loop src=""></audio>
+        </div>
+        <div id="pages">
+            <div class="page">
+                <div id="form">
+                    <p class="line">
+                        <input type="text" name="username" placeholder="用户名">
+                    </p>
+                    <p class="line">
+                        <input type="text" name="phone" placeholder="手机号">
+                    </p>
+                    <button name="submit" id="submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="js/pageSwitch.js"></script>
+<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+
+</html>
